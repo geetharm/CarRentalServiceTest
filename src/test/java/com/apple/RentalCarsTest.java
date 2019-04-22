@@ -11,14 +11,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
+@TestPropertySource(locations = "classpath:dev.properties")
 public class RentalCarsTest extends AbstractTestNGSpringContextTests {
 
+    @Value("${baseURI}")
+    private String baseUri;
     private static final Logger log = LoggerFactory.getLogger(RentalCarsTest.class);
-    private String baseUri = "http://www.mocky.io/v2/5cbba6fb320000a00080d782";
     private ObjectMapper objectMapper = new ObjectMapper();
     private TypeFactory typeFactory = objectMapper.getTypeFactory();
 
